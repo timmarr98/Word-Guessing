@@ -21,6 +21,8 @@ dic = {}
 dic2 = {}
 scrabbleDictionary = {}
 anagramCount = collections.Counter()
+scoreKeep = 0
+
 # txtFile = open('ScrabbleWords.txt','r')
 # lines = txtFile.readlines()
 
@@ -39,6 +41,7 @@ def main():
     global playerScore
     global anagramCount
     global screen
+    global scoreKeep
 
     messageDisplay = ""
     gray = pgame.Color('gray19')
@@ -48,6 +51,7 @@ def main():
     done = False
     intro = True #The intro screen before playing
     flag = True #if the word is valid
+    gameOver1 = False
 
     while intro:
         for event in pgame.event.get():
@@ -70,7 +74,7 @@ def main():
 
 
     clock = pgame.time.Clock()
-    seconds = 30
+    seconds = 5 #change this for testing
     dt = 0
 
     while done:
@@ -107,6 +111,12 @@ def main():
             messageDisplay= ""
             anagram()
             seconds = 30
+            scoreKeep = 0
+            done = False
+            gameOver1= True
+            # break
+        
+        # if seconds <=0 and scoreKeep
 
 
         screen.fill(gray)
@@ -117,6 +127,12 @@ def main():
         playersScore = font.render(str(playerScore),True, blue)
         playerMessage = font.render(messageDisplay, True, blue)
         text_player_message = playerMessage.get_rect(center = (400,600))
+
+        levelScore = font.render(str(scoreKeep),True, blue)
+        text_level_score = levelScore.get_rect(center = (400,100))
+        screen.blit(levelScore,text_level_score )
+
+
         screen.blit(playerMessage, text_player_message)
         screen.blit(inputText, (textRectangle.x + 5, textRectangle.y + 3))
         screen.blit(anagramz, anagramz.get_rect(center = (400,200)))
@@ -125,22 +141,37 @@ def main():
         pgame.display.flip()
         textRectangle.w = max(100, inputText.get_width() + 10)
         dt = clock.tick(30)/1000
+    while gameOver1:
+        for event in pgame.event.get():
+            if event.type == pgame.QUIT:
+                gameOver1 = False
+                break
+        screen.fill(gray)
+        gameOver = font.render("GAME OVER", True, blue)
+        text_game_over  = gameOver.get_rect(center = (400,400))
+        screen.blit(gameOver, text_game_over)
+        pgame.display.flip()
+
 
 def anagram():
     #the number of letters in the anagram
     i = 0
     global anagramString
     global anagramCount
+    global scoreKeep
     anagramString = ""
     anagramCount = collections.Counter()
     while i <8:
         if i == 2 or i == 5 or i == 7:
             randoIndex = vowels[random.randrange(0,len(vowels)-1)]
             anagrams.append(randoIndex)
+            scoreKeep += alphaScore[randoIndex]
             anagramString = anagramString + randoIndex + " "
         else:
             randoIndex = alphabet[random.randrange(0,len(alphabet)-1)]
+            scoreKeep += alphaScore[randoIndex]
             anagramString = anagramString + randoIndex + " "
+   
         i+=1
 
 def playScrambler():
