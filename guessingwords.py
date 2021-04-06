@@ -22,6 +22,8 @@ dic2 = {}
 scrabbleDictionary = {}
 anagramCount = collections.Counter()
 scoreKeep = 0
+level = 1
+count = 0
 
 # txtFile = open('ScrabbleWords.txt','r')
 # lines = txtFile.readlines()
@@ -42,6 +44,8 @@ def main():
     global anagramCount
     global screen
     global scoreKeep
+    global level
+    global count
 
     messageDisplay = ""
     gray = pgame.Color('gray19')
@@ -52,7 +56,7 @@ def main():
     intro = True #The intro screen before playing
     flag = True #if the word is valid
     gameOver1 = False
-
+    flagger = False
     while intro:
         for event in pgame.event.get():
             if event.type == pgame.QUIT:
@@ -74,7 +78,7 @@ def main():
 
 
     clock = pgame.time.Clock()
-    seconds = 5 #change this for testing
+    seconds = 30 #change this for testing
     dt = 0
 
     while done:
@@ -96,6 +100,7 @@ def main():
                         dic2[playerText] = 1
                         messageDisplay = f'{playerText} has given {scrabbleWords[playerText]} points!'
                         playerText= ""
+                        flagger = True
                     else:
                         messageDisplay = f'{playerText} is not a word!'
 
@@ -116,6 +121,13 @@ def main():
             gameOver1= True
             # break
         
+        if playerScore > scoreKeep:
+            if flagger == True:
+                seconds = 30
+                anagram()
+                flagger = False
+            
+
         # if seconds <=0 and scoreKeep
 
 
