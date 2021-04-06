@@ -46,6 +46,7 @@ def main():
     global scoreKeep
     global level
     global count
+    global dic2
 
     messageDisplay = ""
     gray = pgame.Color('gray19')
@@ -117,6 +118,7 @@ def main():
             anagram()
             seconds = 30
             scoreKeep = 0
+            dic2= {}
             done = False
             gameOver1= True
             # break
@@ -125,8 +127,9 @@ def main():
             if flagger == True:
                 seconds = 30
                 anagram()
+                dic2 = {}
                 flagger = False
-            
+
 
         # if seconds <=0 and scoreKeep
 
@@ -189,11 +192,6 @@ def anagram():
 def playScrambler():
     anagram()
 
-# def secondsLeft():
-#     for i in range(seconds):
-#         print(str(seconds-i) + " seconds left ")
-#         t.sleep(1)
-#     print("Game is over, your score is {playerScore}" )
 
 if __name__ == '__main__':
     playScrambler()
