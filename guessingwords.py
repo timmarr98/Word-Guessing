@@ -103,7 +103,10 @@ def main():
                         playerText= ""
                         flagger = True
                     else:
-                        messageDisplay = f'{playerText} is not a word!'
+                        if playerText in dic2:
+                            messageDisplay = f'{playerText} has already been used'
+                        else:
+                            messageDisplay = f'{playerText} is not a word!'
 
                     flag = True
                     
@@ -121,6 +124,7 @@ def main():
             dic2= {}
             done = False
             gameOver1= True
+            level = 1
             # break
         
         if playerScore > scoreKeep:
@@ -128,6 +132,7 @@ def main():
                 seconds = 30
                 anagram()
                 dic2 = {}
+                level+=1
                 flagger = False
 
 
@@ -137,15 +142,22 @@ def main():
         screen.fill(gray)
         pgame.draw.rect(screen, blue, textRectangle,2)
         txt = font.render(str(round(seconds,2)),True,blue)
+        text_seconds = txt.get_rect(center = (50,50))
+
+
         inputText = font.render(playerText, True, blue)
         anagramz = font.render(anagramString, True, blue)
-        playersScore = font.render(str(playerScore),True, blue)
+        playersScore = font.render(str(playerScore) + " total points" ,True, blue)
         playerMessage = font.render(messageDisplay, True, blue)
         text_player_message = playerMessage.get_rect(center = (400,600))
 
-        levelScore = font.render(str(scoreKeep),True, blue)
+        levelScore = font.render(str(scoreKeep) + " minimum pass",True, blue)
         text_level_score = levelScore.get_rect(center = (400,100))
-        screen.blit(levelScore,text_level_score )
+        screen.blit(levelScore,text_level_score)
+
+        currentLevel = font.render("Level " + str(level),True, blue)
+        text_current_level = currentLevel.get_rect(center = (700, 50))
+        screen.blit(currentLevel, text_current_level)
 
 
         screen.blit(playerMessage, text_player_message)
@@ -160,6 +172,7 @@ def main():
         for event in pgame.event.get():
             if event.type == pgame.QUIT:
                 gameOver1 = False
+                level = 1
                 break
         screen.fill(gray)
         gameOver = font.render("GAME OVER", True, blue)
@@ -178,12 +191,12 @@ def anagram():
     anagramCount = collections.Counter()
     while i <8:
         if i == 2 or i == 5 or i == 7:
-            randoIndex = vowels[random.randrange(0,len(vowels)-1)]
+            randoIndex = vowels[random.randrange(0,len(vowels))]
             anagrams.append(randoIndex)
             scoreKeep += alphaScore[randoIndex]
             anagramString = anagramString + randoIndex + " "
         else:
-            randoIndex = alphabet[random.randrange(0,len(alphabet)-1)]
+            randoIndex = alphabet[random.randrange(0,len(alphabet))]
             scoreKeep += alphaScore[randoIndex]
             anagramString = anagramString + randoIndex + " "
    
