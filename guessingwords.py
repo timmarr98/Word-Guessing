@@ -47,6 +47,8 @@ def main():
     global count
     global dic2
 
+    messageColor = pgame.Color('green')
+
     messageDisplay = ""
     gray = pgame.Color('gray19')
     blue = pgame.Color('dodgerblue')
@@ -97,14 +99,19 @@ def main():
                     if playerText not in dic2 and flag and playerText in scrabbleWords:
                         playerScore += scrabbleWords[playerText]
                         dic2[playerText] = 1
+                        messageColor = pgame.Color('green')
                         messageDisplay = f'{playerText} has given {scrabbleWords[playerText]} points!'
                         playerText= ""
                         flagger = True
                     else:
                         if playerText in dic2:
                             messageDisplay = f'{playerText} has already been used'
+                            messageColor = pgame.Color('red')
+
                         else:
                             messageDisplay = f'{playerText} is not a word!'
+                            messageColor = pgame.Color('red')
+
 
                     flag = True
                     
@@ -143,21 +150,21 @@ def main():
 
         screen.fill(gray)
         pgame.draw.rect(screen, blue, textRectangle,2)
-        txt = font.render(str(round(seconds,2)),True,blue)
+        txt = font.render(str(round(seconds,2)),True,pgame.Color('green'))
         text_seconds = txt.get_rect(center = (50,50))
 
 
         inputText = font.render(playerText, True, blue)
         anagramz = font.render(anagramString, True, blue)
         playersScore = font.render(str(playerScore) + " total points" ,True, blue)
-        playerMessage = font.render(messageDisplay, True, blue)
+        playerMessage = font.render(messageDisplay, True, messageColor)
         text_player_message = playerMessage.get_rect(center = (400,600))
 
         levelScore = font.render(str(scoreKeep) + " minimum pass",True, blue)
         text_level_score = levelScore.get_rect(center = (400,100))
         screen.blit(levelScore,text_level_score)
 
-        currentLevel = font.render("Level " + str(level),True, blue)
+        currentLevel = font.render("Level " + str(level),True, pgame.Color('white'))
         text_current_level = currentLevel.get_rect(center = (700, 50))
         screen.blit(currentLevel, text_current_level)
 
