@@ -23,7 +23,6 @@ scrabbleDictionary = {}
 anagramCount = collections.Counter()
 scoreKeep = 0
 level = 1
-count = 0
 
 # txtFile = open('ScrabbleWords.txt','r')
 # lines = txtFile.readlines()
@@ -95,7 +94,6 @@ def main():
                             print("TRY AGAIN!")
                             flag = False
                         anagramCount[x] -= 1
-                    
                     if playerText not in dic2 and flag and playerText in scrabbleWords:
                         playerScore += scrabbleWords[playerText]
                         dic2[playerText] = 1
@@ -123,8 +121,12 @@ def main():
             scoreKeep = 0
             dic2= {}
             done = False
-            gameOver1= True
             level = 1
+            playerScore = 0
+            intro = True #The intro screen before playing
+            flag = True #if the word is valid
+            flagger = False
+            gameOver1= True
             # break
         
         if playerScore > scoreKeep:
@@ -174,8 +176,17 @@ def main():
                 gameOver1 = False
                 level = 1
                 break
+            if event.type == pgame.MOUSEBUTTONDOWN:
+                done = True
+                intro = False
+                gameOver1=False
+                main()
+    
         screen.fill(gray)
         gameOver = font.render("GAME OVER", True, blue)
+        clickwhere = font.render("CLICK ANYWHERE TO PLAY AGAIN!", True, blue)
+        text_rect_center = clickwhere.get_rect(center = (400,600))
+        screen.blit(clickwhere, text_rect_center)
         text_game_over  = gameOver.get_rect(center = (400,400))
         screen.blit(gameOver, text_game_over)
         pgame.display.flip()
@@ -204,7 +215,6 @@ def anagram():
 
 def playScrambler():
     anagram()
-
 
 if __name__ == '__main__':
     playScrambler()
