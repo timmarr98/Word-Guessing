@@ -15,3 +15,6 @@ Time is ticking, so watchout for the timer on the top left. Once the 30 seconds 
 
 ### Dependencies
 The only dependency required is the scrabble points dictionary, which was parsed from a textfile of all 170,000+ verified words. The list was parsed through python, and assigned their appropriate value and stored into a dictionary on scrabbleWordsDict.py.
+
+### Feedback
+If you have any feedback on the code, the algorithm used in the game, email me at tmarr006@fiu.edu. I'm always open to criticism in order to improve the enjoyability of the game!
