@@ -24,15 +24,6 @@ anagramCount = collections.Counter()
 scoreKeep = 0
 level = 1
 
-# txtFile = open('ScrabbleWords.txt','r')
-# lines = txtFile.readlines()
-
-# for line in lines:
-#     print(line.strip())
-#     scrabbleDictionary[line.strip()] = 1
-# print(scrabbleDictionary)
-# print('Done') 
-
 pgame.init()
 screen = pgame.display.set_mode((800,800))
 
@@ -123,9 +114,9 @@ def main():
         seconds -=dt
         if seconds <= 0:
             messageDisplay= ""
+            scoreKeep = 0
             anagram()
             seconds = 30
-            scoreKeep = 0
             dic2= {}
             done = False
             level = 1
