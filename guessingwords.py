@@ -98,10 +98,12 @@ def main():
                         if playerText in dic2:
                             messageDisplay = f'{playerText} has already been used'
                             messageColor = pgame.Color('red')
+                            playerText= ""
 
                         else:
                             messageDisplay = f'{playerText} is not a word!'
                             messageColor = pgame.Color('red')
+                            playerText= ""
 
 
                     flag = True
