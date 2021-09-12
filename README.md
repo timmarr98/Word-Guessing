@@ -10,6 +10,8 @@ To play, download the repository and navigate to to disc/guessingwords.exe and r
 
 The premise of the Word Guessing game is to progress through levels by entering words using the characters available. Each character is assigned a value (from the scrabble index) which is incremented every level, based on the value of the current mash of letters. The player has an accumulated score to the right of the entry box, to judge their progress.
 
+<img src ="wordfinder.png" width = "450" height = "450">
+
 Time is ticking, so watchout for the timer on the top left. Once the 30 seconds are up, it's game over. In order to increase your time, you have to get your user score to pass the minimum passing score by entering valid words. 
 
 <img src ="b7130baa265cf7c8d34635c24c2bcf88.gif" width = "450" height = "450">
