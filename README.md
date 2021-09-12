@@ -12,7 +12,7 @@ The premise of the Word Guessing game is to progress through levels by entering 
 
 Time is ticking, so watchout for the timer on the top left. Once the 30 seconds are up, it's game over. In order to increase your time, you have to get your user score to pass the minimum passing score by entering valid words. 
 
-<img src ="b7130baa265cf7c8d34635c24c2bcf88.gif">
+<img src ="b7130baa265cf7c8d34635c24c2bcf88.gif" width = "450" height = "450">
 
 ### Dependencies
 The only dependency required is the scrabble points dictionary, which was parsed from a textfile of all 170,000+ verified words. The list was parsed through python, and assigned their appropriate value and stored into a dictionary on scrabbleWordsDict.py.
